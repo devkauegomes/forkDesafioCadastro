@@ -1,16 +1,16 @@
 package entity;
 
 public enum SexoPet {
-    MACHO("Macho"),
-    FEMEA("Fêmea");
+    MACHO(1),
+    FEMEA(2);
 
-    private final String sexoPet;
+    private final int sexoPet;
 
-    SexoPet(String sexoPetString){
-        this.sexoPet = sexoPetString;
+    SexoPet(int sexoPetInt){
+        this.sexoPet = sexoPetInt;
     }
 
-    public String getSexoPet(){
+    public int getSexoPet(){
         return this.sexoPet;
     }
 }
