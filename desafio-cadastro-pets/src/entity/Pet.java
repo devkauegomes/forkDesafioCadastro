@@ -1,51 +1,40 @@
 package entity;
 
 
+import util.ConstanteUtils;
+
 public class Pet {
-    private String nome;
-    private String sobreNome;
+    private String nomeSobrenome;
     private TipoPet tipoPet;
     private SexoPet sexoPet;
     private Endereco endereco;
-    private int idade;
-    private double peso;
+    private Double idade;
+    private Double peso;
     private String raca;
-    public static final String NAO_INFORMADO = "NÃO INFORMADO";
 
-    public Pet(String nome, String sobreNome, TipoPet tipoPet, SexoPet sexoPet, Endereco endereco, int idade, double peso, String raca) {
-        this.nome = (nome == null || nome.isBlank()) ? NAO_INFORMADO : nome;
-        this.sobreNome = (sobreNome == null || sobreNome.isBlank()) ? NAO_INFORMADO : sobreNome;
+    public Pet(String nomeSobrenome, TipoPet tipoPet, SexoPet sexoPet, Endereco endereco, Double idade, Double peso, String raca) {
+        this.nomeSobrenome = (nomeSobrenome == null || nomeSobrenome.isBlank()) ? ConstanteUtils.NAO_INFORMADO : nomeSobrenome;
         this.tipoPet = tipoPet;
         this.sexoPet = sexoPet;
         this.endereco = endereco;
         this.idade = idade;
         this.peso = peso;
-        this.raca = (raca == null || raca.isBlank()) ? NAO_INFORMADO : raca;
+        this.raca = (raca == null || raca.isBlank()) ? ConstanteUtils.NAO_INFORMADO : raca;
     }
 
-    public String getNome() {
-        return nome;
+    public Pet() {
     }
 
-    public void setNome(String nome) {
-        if (nome == null) {
-            throw new IllegalArgumentException("O nome não deve ser nulo.");
-        } else if (nome.isEmpty()) {
-            this.nome = NAO_INFORMADO;
+    public String getNomeSobrenome() {
+        return nomeSobrenome;
+    }
+
+    public void setNomeSobrenome(String nome) {
+        if (nome == null || nome.isEmpty()) {
+            this.nomeSobrenome = ConstanteUtils.NAO_INFORMADO;
             return;
         }
-        this.nome = nome;
-    }
-
-    public String getSobreNome() {
-        return sobreNome;
-    }
-
-    public void setSobreNome(String sobreNome) {
-        if (nome == null || nome.isEmpty()) {
-            throw new IllegalArgumentException("O sobrenome não deve ser nulo ou vazio.");
-        }
-        this.sobreNome = sobreNome;
+        this.nomeSobrenome = nome;
     }
 
     public TipoPet getTipoPet() {
@@ -75,22 +64,22 @@ public class Pet {
         this.endereco = endereco;
     }
 
-    public int getIdade() {
+    public Double getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
-        if (idade < 0 || idade > 20) {
+    public void setIdade(Double idade) {
+        if (idade <= 0 || idade > 20) {
             throw new IllegalArgumentException("A idade não deve ultrapassar 20 anos ou ser menor que 0.");
         }
         this.idade = idade;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         if (peso < 0.5 || peso > 60) {
             throw new IllegalArgumentException("A peso deve estar entre 0.5kg e 60kg.");
         }
@@ -104,7 +93,7 @@ public class Pet {
     public void setRaca(String raca) {
         if (raca == null) throw new IllegalArgumentException("A raça não deve ser nula.");
         else if (raca.isEmpty()) {
-            this.raca = NAO_INFORMADO;
+            this.raca = ConstanteUtils.NAO_INFORMADO;
             return;
         }
         this.raca = raca;
@@ -112,16 +101,19 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Nome: " + this.nome +
-                "\nSobrenome: " + this.sobreNome +
+        String idade = (this.idade == null) ? ConstanteUtils.NAO_INFORMADO : String.format("%.1f", this.idade);
+        String peso = (this.peso == null) ? ConstanteUtils.NAO_INFORMADO : String.format("%.2f kg", this.peso);
+        String numeroCasa = (this.endereco.getNumeroDaCasa() == null) ? ConstanteUtils.NAO_INFORMADO : String.format("%d", this.endereco.getNumeroDaCasa());
+        return "Nome: " + this.nomeSobrenome +
                 "\nTipo: " + this.tipoPet +
                 "\nSexo: " + this.sexoPet +
                 "\nEndereço... " +
+                "\nNúmero da Casa: " + numeroCasa +
                 "\nCidade: " + this.endereco.getCidade() +
                 "\nRua: " + this.endereco.getRua() +
                 "\nBairro: " + this.endereco.getBairro() +
-                "\nIdade: " + this.idade +
-                "\nPeso: " + this.peso +
+                "\nIdade: " + idade +
+                "\nPeso: " + peso +
                 "\nRaça: " + this.raca;
     }
 }

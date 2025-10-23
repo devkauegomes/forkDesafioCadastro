@@ -1,25 +1,27 @@
 package entity;
 
+import util.ConstanteUtils;
+
 public class Endereco {
-    private int numeroDaCasa;
+    private Integer numeroDaCasa;
     private String cidade;
     private String rua;
     private String bairro;
 
-    public Endereco(int numeroDaCasa, String cidade, String rua, String bairro) {
+    public Endereco(Integer numeroDaCasa, String cidade, String rua, String bairro) {
         this.numeroDaCasa = numeroDaCasa;
         this.cidade = cidade;
         this.rua = rua;
         this.bairro = bairro;
     }
 
-    public int getNumeroDaCasa() {
+    public Integer getNumeroDaCasa() {
         return numeroDaCasa;
     }
 
-    public void setNumeroDaCasa(int numeroDaCasa) {
+    public void setNumeroDaCasa(Integer numeroDaCasa) {
         if (numeroDaCasa < 0){
-            throw new IllegalArgumentException("O número da casa deve ser maior ou igual a 0.");
+            throw new IllegalArgumentException("O numero deve ser maior ou igual a 0.");
         }
         this.numeroDaCasa = numeroDaCasa;
     }
@@ -41,7 +43,7 @@ public class Endereco {
 
     public void setRua(String rua) {
         if (rua == null || rua.isEmpty()){
-            throw new IllegalArgumentException("A rua não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("A rua não deve ser nula ou vazia.");
         }
         this.rua = rua;
     }

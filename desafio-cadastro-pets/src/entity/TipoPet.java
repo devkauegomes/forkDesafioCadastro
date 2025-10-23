@@ -1,16 +1,16 @@
 package entity;
 
 public enum TipoPet {
-    CACHORRO("Cachorro"),
-    GATO("Gato");
+    CACHORRO(1),
+    GATO(2);
 
-    private final String tipoPet;
+    private final int tipoPet;
 
-    TipoPet(String tipoPetString){
-        this.tipoPet = tipoPetString;
+    TipoPet(int tipoPetInt){
+        this.tipoPet = tipoPetInt;
     }
 
-    public String getTipoPet(){
+    public int getTipoPet(){
         return this.tipoPet;
     }
 }

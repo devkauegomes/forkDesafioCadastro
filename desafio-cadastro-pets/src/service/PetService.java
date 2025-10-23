@@ -10,8 +10,8 @@ public class PetService {
         this.pets = new Pet[5000];
     }
 
-    public void AdicionarPet(Pet pet){
-        if (this.contadorArray < this.pets.length){
+    public void adicionarPet(Pet pet){
+        if (contadorArray < this.pets.length){
             this.pets[contadorArray] = pet;
             contadorArray++;
         }
